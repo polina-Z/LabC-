@@ -12,21 +12,21 @@ namespace Lab1
 
         bool isGameOver;
         bool isMoved;
-        public int sizeOfMap 
+        public int SizeOfMap 
         { 
-            get { return mapOfPlayingField.sizeOfMap; }
+            get { return mapOfPlayingField.SizeOfMap; }
         }
 
-        public ModelOfGame(int sizeOfMap)
+        public ModelOfGame(int SizeOfMap)
         {
-            mapOfPlayingField = new PlayingFieldMap(sizeOfMap);
+            mapOfPlayingField = new PlayingFieldMap(SizeOfMap);
         }
 
         public void StartGame()
         {
             isGameOver = false;
-            for (int x = 0; x < sizeOfMap; x++)
-                for (int y = 0; y < sizeOfMap; y++)
+            for (int x = 0; x < SizeOfMap; x++)
+                for (int y = 0; y < SizeOfMap; y++)
                     mapOfPlayingField.SetNumberByCoordinates(x, y, 0);
             AddRandomNumber();
             AddRandomNumber();
@@ -40,8 +40,8 @@ namespace Lab1
             }
             for(int j = 0; j < 100; j++)
             {
-                int x = random.Next(0, mapOfPlayingField.sizeOfMap);
-                int y = random.Next(0, mapOfPlayingField.sizeOfMap);
+                int x = random.Next(0, mapOfPlayingField.SizeOfMap);
+                int y = random.Next(0, mapOfPlayingField.SizeOfMap);
                 if (mapOfPlayingField.GetСoordinates(x, y) == 0)
                 {
                     mapOfPlayingField.SetNumberByCoordinates(x, y, random.Next(1, 3) * 2);
@@ -83,11 +83,11 @@ namespace Lab1
         public void LeftButtonPressed()
         {
             isMoved = false;
-            for (int y = 0; y < mapOfPlayingField.sizeOfMap; y++)
+            for (int y = 0; y < mapOfPlayingField.SizeOfMap; y++)
             {
-                for (int x = 1; x < mapOfPlayingField.sizeOfMap; x++)
+                for (int x = 1; x < mapOfPlayingField.SizeOfMap; x++)
                     MoveNumber(x, y, -1, 0);
-                for (int x = 1; x < mapOfPlayingField.sizeOfMap; x++)
+                for (int x = 1; x < mapOfPlayingField.SizeOfMap; x++)
                     JoinTheSameNumbers(x, y, -1, 0);
             }
             if (isMoved)
@@ -99,11 +99,11 @@ namespace Lab1
         public void RightButtonPressed()
         {
             isMoved = false;
-            for (int y = 0; y < mapOfPlayingField.sizeOfMap; y++)
+            for (int y = 0; y < mapOfPlayingField.SizeOfMap; y++)
             {
-                for (int x = mapOfPlayingField.sizeOfMap - 2; x >= 0; x--)
+                for (int x = mapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
                     MoveNumber(x, y, +1, 0);
-                for (int x = mapOfPlayingField.sizeOfMap - 2; x >= 0; x--)
+                for (int x = mapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
                     JoinTheSameNumbers(x, y, +1, 0);
             }
             if (isMoved)
@@ -115,11 +115,11 @@ namespace Lab1
         public void UpButtonPressed()
         {
             isMoved = false;
-            for (int x = 0; x < mapOfPlayingField.sizeOfMap; x++)
+            for (int x = 0; x < mapOfPlayingField.SizeOfMap; x++)
             {
-                for (int y = 1; y < mapOfPlayingField.sizeOfMap; y++)
+                for (int y = 1; y < mapOfPlayingField.SizeOfMap; y++)
                     MoveNumber(x, y, 0, -1);
-                for (int y = 1; y < mapOfPlayingField.sizeOfMap; y++)
+                for (int y = 1; y < mapOfPlayingField.SizeOfMap; y++)
                     JoinTheSameNumbers(x, y, 0, -1);
             }
             if (isMoved)
@@ -131,11 +131,11 @@ namespace Lab1
         public void DownButtonPressed()
         {
             isMoved = false;
-            for (int x = 0; x < mapOfPlayingField.sizeOfMap; x++)
+            for (int x = 0; x < mapOfPlayingField.SizeOfMap; x++)
             {
-                for (int y = mapOfPlayingField.sizeOfMap - 2; y >= 0; y--)
+                for (int y = mapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
                     MoveNumber(x, y, 0, +1);
-                for (int y = mapOfPlayingField.sizeOfMap - 2; y >= 0; y--)
+                for (int y = mapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
                     JoinTheSameNumbers(x, y, 0, +1);
             }
             if (isMoved)
@@ -155,12 +155,12 @@ namespace Lab1
             {
                 return isGameOver;
             }
-            for (int x = 0; x < sizeOfMap; x++)
-                for (int y = 0; y < sizeOfMap; y++)
+            for (int x = 0; x < SizeOfMap; x++)
+                for (int y = 0; y < SizeOfMap; y++)
                     if(mapOfPlayingField.GetСoordinates(x, y) == 0)
                         return false;
-            for (int x = 0; x < sizeOfMap; x++)
-                for (int y = 0; y < sizeOfMap; y++)
+            for (int x = 0; x < SizeOfMap; x++)
+                for (int y = 0; y < SizeOfMap; y++)
                     if (mapOfPlayingField.GetСoordinates(x, y) == mapOfPlayingField.GetСoordinates(x + 1, y) ||
                         mapOfPlayingField.GetСoordinates(x, y) == mapOfPlayingField.GetСoordinates(x, y + 1))
                         return false;

@@ -41,8 +41,8 @@ namespace Lab1
 
         void Show(ModelOfGame modelGame)
         {
-            for(int y = 0; y < modelGame.sizeOfMap; y++)
-                for (int x = 0; x < modelGame.sizeOfMap; x++)
+            for(int y = 0; y < modelGame.SizeOfMap; y++)
+                for (int x = 0; x < modelGame.SizeOfMap; x++)
                 {
                     Console.SetCursorPosition(x * 5 + 5, y * 2 + 2);
                     int number = modelGame.GetСoordinatesMap(x, y);
