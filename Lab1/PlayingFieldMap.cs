@@ -6,20 +6,20 @@ namespace Lab1
 {
     class PlayingFieldMap
     {
-        int[,] MapOfPlayingField;
+        private int[,] mMapOfPlayingField;
         public int SizeOfMap { get; private set; }
 
         public PlayingFieldMap(int SizeOfMap)
         {
             this.SizeOfMap = SizeOfMap;
-            MapOfPlayingField = new int[SizeOfMap, SizeOfMap];
+            mMapOfPlayingField = new int[SizeOfMap, SizeOfMap];
         }
         
         public int GetСoordinates(int x, int y)
         {
             if (OnMap(x, y))
             {
-                return MapOfPlayingField[x, y];
+                return mMapOfPlayingField[x, y];
             }
             return -1;
         }
@@ -28,7 +28,7 @@ namespace Lab1
         {
             if (OnMap(x, y))
             {
-                MapOfPlayingField[x, y] = number;
+                mMapOfPlayingField[x, y] = number;
             }
         }
 

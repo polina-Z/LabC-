@@ -6,45 +6,45 @@ namespace Lab1
 {
     class ModelOfGame
     {
-        PlayingFieldMap mapOfPlayingField;
+        private PlayingFieldMap mMapOfPlayingField;
 
         static Random random = new Random();
 
-        bool isGameOver;
-        bool isMoved;
+        private bool mIsGameOver;
+        private bool mIsMoved;
         public int SizeOfMap 
         { 
-            get { return mapOfPlayingField.SizeOfMap; }
+            get { return mMapOfPlayingField.SizeOfMap; }
         }
 
         public ModelOfGame(int SizeOfMap)
         {
-            mapOfPlayingField = new PlayingFieldMap(SizeOfMap);
+            mMapOfPlayingField = new PlayingFieldMap(SizeOfMap);
         }
 
         public void StartGame()
         {
-            isGameOver = false;
+            mIsGameOver = false;
             for (int x = 0; x < SizeOfMap; x++)
                 for (int y = 0; y < SizeOfMap; y++)
-                    mapOfPlayingField.SetNumberByCoordinates(x, y, 0);
+                    mMapOfPlayingField.SetNumberByCoordinates(x, y, 0);
             AddRandomNumber();
             AddRandomNumber();
         }
 
         private void AddRandomNumber()
         {
-            if (isGameOver)
+            if (mIsGameOver)
             {
                 return;
             }
             for(int j = 0; j < 100; j++)
             {
-                int x = random.Next(0, mapOfPlayingField.SizeOfMap);
-                int y = random.Next(0, mapOfPlayingField.SizeOfMap);
-                if (mapOfPlayingField.GetСoordinates(x, y) == 0)
+                int x = random.Next(0, mMapOfPlayingField.SizeOfMap);
+                int y = random.Next(0, mMapOfPlayingField.SizeOfMap);
+                if (mMapOfPlayingField.GetСoordinates(x, y) == 0)
                 {
-                    mapOfPlayingField.SetNumberByCoordinates(x, y, random.Next(1, 3) * 2);
+                    mMapOfPlayingField.SetNumberByCoordinates(x, y, random.Next(1, 3) * 2);
                     return;
                 }
             }
@@ -52,45 +52,45 @@ namespace Lab1
 
         void MoveNumber(int x, int y, int stepX, int stepY)
         {
-            if(mapOfPlayingField.GetСoordinates(x, y) > 0)
-                while(mapOfPlayingField.GetСoordinates(x + stepX, y+ stepY) == 0)
+            if(mMapOfPlayingField.GetСoordinates(x, y) > 0)
+                while(mMapOfPlayingField.GetСoordinates(x + stepX, y+ stepY) == 0)
                 {
-                    mapOfPlayingField.SetNumberByCoordinates(x + stepX, y + stepY, mapOfPlayingField.GetСoordinates(x, y));
-                    mapOfPlayingField.SetNumberByCoordinates(x, y, 0);
+                    mMapOfPlayingField.SetNumberByCoordinates(x + stepX, y + stepY, mMapOfPlayingField.GetСoordinates(x, y));
+                    mMapOfPlayingField.SetNumberByCoordinates(x, y, 0);
                     x += stepX;
                     y += stepY;
-                    isMoved = true;
+                    mIsMoved = true;
                 }
         }
       
         void JoinTheSameNumbers(int x, int y, int stepX, int stepY)
         {
-            if (mapOfPlayingField.GetСoordinates(x, y) > 0)
-                if(mapOfPlayingField.GetСoordinates(x + stepX, y + stepY) == mapOfPlayingField.GetСoordinates(x, y))
+            if (mMapOfPlayingField.GetСoordinates(x, y) > 0)
+                if(mMapOfPlayingField.GetСoordinates(x + stepX, y + stepY) == mMapOfPlayingField.GetСoordinates(x, y))
                 {
-                    mapOfPlayingField.SetNumberByCoordinates(x + stepX, y + stepY, mapOfPlayingField.GetСoordinates(x, y) * 2);
-                    while(mapOfPlayingField.GetСoordinates(x - stepX, y - stepY) > 0)
+                    mMapOfPlayingField.SetNumberByCoordinates(x + stepX, y + stepY, mMapOfPlayingField.GetСoordinates(x, y) * 2);
+                    while(mMapOfPlayingField.GetСoordinates(x - stepX, y - stepY) > 0)
                     {
-                        mapOfPlayingField.SetNumberByCoordinates(x, y, mapOfPlayingField.GetСoordinates(x - stepX, y - stepY));
+                        mMapOfPlayingField.SetNumberByCoordinates(x, y, mMapOfPlayingField.GetСoordinates(x - stepX, y - stepY));
                         x -= stepX;
                         y -= stepY;
                     }
-                    mapOfPlayingField.SetNumberByCoordinates(x, y, 0);
-                    isMoved = true;
+                    mMapOfPlayingField.SetNumberByCoordinates(x, y, 0);
+                    mIsMoved = true;
                 }
         }
 
         public void LeftButtonPressed()
         {
-            isMoved = false;
-            for (int y = 0; y < mapOfPlayingField.SizeOfMap; y++)
+            mIsMoved = false;
+            for (int y = 0; y < mMapOfPlayingField.SizeOfMap; y++)
             {
-                for (int x = 1; x < mapOfPlayingField.SizeOfMap; x++)
+                for (int x = 1; x < mMapOfPlayingField.SizeOfMap; x++)
                     MoveNumber(x, y, -1, 0);
-                for (int x = 1; x < mapOfPlayingField.SizeOfMap; x++)
+                for (int x = 1; x < mMapOfPlayingField.SizeOfMap; x++)
                     JoinTheSameNumbers(x, y, -1, 0);
             }
-            if (isMoved)
+            if (mIsMoved)
             {
                 AddRandomNumber();
             }
@@ -98,15 +98,15 @@ namespace Lab1
 
         public void RightButtonPressed()
         {
-            isMoved = false;
-            for (int y = 0; y < mapOfPlayingField.SizeOfMap; y++)
+            mIsMoved = false;
+            for (int y = 0; y < mMapOfPlayingField.SizeOfMap; y++)
             {
-                for (int x = mapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
+                for (int x = mMapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
                     MoveNumber(x, y, +1, 0);
-                for (int x = mapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
+                for (int x = mMapOfPlayingField.SizeOfMap - 2; x >= 0; x--)
                     JoinTheSameNumbers(x, y, +1, 0);
             }
-            if (isMoved)
+            if (mIsMoved)
             {
                 AddRandomNumber();
             }
@@ -114,15 +114,15 @@ namespace Lab1
 
         public void UpButtonPressed()
         {
-            isMoved = false;
-            for (int x = 0; x < mapOfPlayingField.SizeOfMap; x++)
+            mIsMoved = false;
+            for (int x = 0; x < mMapOfPlayingField.SizeOfMap; x++)
             {
-                for (int y = 1; y < mapOfPlayingField.SizeOfMap; y++)
+                for (int y = 1; y < mMapOfPlayingField.SizeOfMap; y++)
                     MoveNumber(x, y, 0, -1);
-                for (int y = 1; y < mapOfPlayingField.SizeOfMap; y++)
+                for (int y = 1; y < mMapOfPlayingField.SizeOfMap; y++)
                     JoinTheSameNumbers(x, y, 0, -1);
             }
-            if (isMoved)
+            if (mIsMoved)
             {
                 AddRandomNumber();
             }
@@ -130,15 +130,15 @@ namespace Lab1
 
         public void DownButtonPressed()
         {
-            isMoved = false;
-            for (int x = 0; x < mapOfPlayingField.SizeOfMap; x++)
+            mIsMoved = false;
+            for (int x = 0; x < mMapOfPlayingField.SizeOfMap; x++)
             {
-                for (int y = mapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
+                for (int y = mMapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
                     MoveNumber(x, y, 0, +1);
-                for (int y = mapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
+                for (int y = mMapOfPlayingField.SizeOfMap - 2; y >= 0; y--)
                     JoinTheSameNumbers(x, y, 0, +1);
             }
-            if (isMoved)
+            if (mIsMoved)
             {
                 AddRandomNumber();
             }
@@ -146,26 +146,26 @@ namespace Lab1
 
         public int GetСoordinatesMap(int x, int y)
         {
-            return mapOfPlayingField.GetСoordinates(x, y);
+            return mMapOfPlayingField.GetСoordinates(x, y);
         }
 
         public bool IsGameOver()
         {
-            if (isGameOver)
+            if (mIsGameOver)
             {
-                return isGameOver;
+                return mIsGameOver;
             }
             for (int x = 0; x < SizeOfMap; x++)
                 for (int y = 0; y < SizeOfMap; y++)
-                    if(mapOfPlayingField.GetСoordinates(x, y) == 0)
+                    if(mMapOfPlayingField.GetСoordinates(x, y) == 0)
                         return false;
             for (int x = 0; x < SizeOfMap; x++)
                 for (int y = 0; y < SizeOfMap; y++)
-                    if (mapOfPlayingField.GetСoordinates(x, y) == mapOfPlayingField.GetСoordinates(x + 1, y) ||
-                        mapOfPlayingField.GetСoordinates(x, y) == mapOfPlayingField.GetСoordinates(x, y + 1))
+                    if (mMapOfPlayingField.GetСoordinates(x, y) == mMapOfPlayingField.GetСoordinates(x + 1, y) ||
+                        mMapOfPlayingField.GetСoordinates(x, y) == mMapOfPlayingField.GetСoordinates(x, y + 1))
                         return false;
-            isGameOver = true;
-            return isGameOver;
+            mIsGameOver = true;
+            return mIsGameOver;
         }
     }
 }
