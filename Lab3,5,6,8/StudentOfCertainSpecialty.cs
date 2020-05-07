@@ -26,26 +26,16 @@ namespace ConsoleApp1
             this.mLogic = logic;
             this.mMathematicalLogic = mathematicalLogic;
             this.mWardenOfGroup = wardenOfGroup;
+            this.averageMarkInAllSubjects = CalculateAverage();
+            this.academicPerformance = DetermineAcademicPerformance(averageMarkInAllSubjects);
         }
 
         public float CalculateAverage()
         {
             const int numberOfAdditionalSubjects = 3;
-            float averageMarkInAllSubjects = 0;
-            averageMark[0] = DoOperation("Math", marks.math);
-            averageMark[1] = DoOperation("Physics", marks.physics);
-            averageMark[2] = DoOperation("Philosophy", marks.philosophy);
-            averageMark[3] = DoOperation("PoliticalScience", marks.politicalScience);
-            averageMark[4] = DoOperation("History", marks.history);
-            averageMark[5] = DoOperation("BelarusianLanguage", marks.belarusianLanguage);
-
-            for (int i = 0; i < averageMark.Length; i++)
-            {
-                averageMarkInAllSubjects += averageMark[i];
-            }
-            averageMarkInAllSubjects = DoAverage(mProgramming) + DoAverage(mLogic) + DoAverage(mMathematicalLogic);
-            averageMarkInAllSubjects /= (averageMark.Length + numberOfAdditionalSubjects);
-            this.averageMarkInAllSubjects = averageMarkInAllSubjects;
+            float averageMarkInAllSubjects = DoAverage();
+            float averageOfAdditionalSubjects = (DoAverage(mProgramming) + DoAverage(mLogic) + DoAverage(mMathematicalLogic))/numberOfAdditionalSubjects;
+            averageMarkInAllSubjects = (averageMarkInAllSubjects + averageOfAdditionalSubjects) / 2;
             return averageMarkInAllSubjects;
         }
 

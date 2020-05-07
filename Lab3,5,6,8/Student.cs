@@ -26,12 +26,12 @@ namespace ConsoleApp1
             _subject =
                 new Dictionary<string, DisciplineDelegate>
                 {
-                    { "Math", this.DoAverage },
+                   { "Math", this.DoAverage },
                     { "Physics", this.DoAverage },
-                    { "Philosophy", this.DoAverageOfCertainElements },
-                    { "PoliticalScience", this.DoAverageOfCertainElements },
-                    { "History", this.DoAverageOfRandomElements },
-                    { "BelarusianLanguage",this.DoAverageOfRandomElements },
+                    { "Philosophy", this.DoAverageOfRandomElements },
+                    { "PoliticalScience", this.DoAverageOfRandomElements},
+                    { "History", this.DoAverageOfCertainElements},
+                    { "BelarusianLanguage",this.DoAverageOfCertainElements },
                 };
             Showing += Display;
             marks = new Mark(math, physics, philosophy, politicalScience, history, belarusianLanguage);
