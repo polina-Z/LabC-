@@ -13,15 +13,15 @@ namespace ConsoleApp1
         private int[] mMathematicalLogic;
         private string mWardenOfGroup;
 
-        public StudentOfCertainSpecialty(string speciality, int groupNumber, int[] programming, int[] logic, int[] mathematicalLogic,
+        public StudentOfCertainSpecialty(string speciality, string groupNumber, int[] programming, int[] logic, int[] mathematicalLogic,
                                          string wardenOfGroup, int[] math, int[] physics, int[] philosophy, int[] politicalScience, int[] history, 
-                                         int[] belarusianLanguage, int year, string educationalInstitutionName, int age, int height, 
-                                         int weight, GenderOfPeople genderOfPeople, string surname, string name, 
+                                         int[] belarusianLanguage, string year, string educationalInstitutionName, string age, string height, 
+                                         string weight, GenderOfPeople genderOfPeople, string surname, string name, 
                                          string patronymic = "") : base(math, physics, philosophy, politicalScience, history, belarusianLanguage, 
                                          year, educationalInstitutionName, age, height, weight, genderOfPeople, surname, name, patronymic)
         {
             this.mSpeciality = СheckEnglishLetter(speciality) ? speciality : "No information";
-            this.mGroupNumber = groupNumber;
+            this.mGroupNumber = Int32.TryParse(groupNumber, out this.mGroupNumber) ? Int32.Parse(groupNumber) : 0;
             this.mProgramming = programming;
             this.mLogic = logic;
             this.mMathematicalLogic = mathematicalLogic;

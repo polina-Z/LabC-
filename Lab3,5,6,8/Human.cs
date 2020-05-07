@@ -16,11 +16,11 @@ namespace ConsoleApp1
         protected int height;
         protected int weight;
 
-        public Human(int age, int height, int weight, GenderOfPeople genderOfPeople, string surname, string name, string patronymic = "")
+        public Human(string age, string height, string weight, GenderOfPeople genderOfPeople, string surname, string name, string patronymic = "")
         {
-            Age = age;
-            Height = height;
-            Weight = weight;
+            Age = Int32.TryParse(age, out this.age)? Int32.Parse(age) : 0;
+            Height = Int32.TryParse(height, out this.height) ? Int32.Parse(height) : 0;
+            Weight = Int32.TryParse(weight, out this.weight) ? Int32.Parse(weight) : 0;
             this.id = SetId();
             this.genderOfPeople = genderOfPeople;
             this.surname = СheckEnglishLetter(surname)? surname : "No information";
@@ -48,9 +48,9 @@ namespace ConsoleApp1
         {
             set
             {
-                if (value < 20)
+                if (value < 0)
                 {
-                    Console.WriteLine("Height should be more than 20\n");
+                    Console.WriteLine("Height must be  be greater than or equal to 0\n");
                 }
                 else
                 {

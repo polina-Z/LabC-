@@ -19,7 +19,7 @@ namespace ConsoleApp1
         public event showInformation Showing =  (OperationName) => { };
 
         public Student(int[] math, int[] physics, int[] philosophy, int[] politicalScience, int[] history, int[] belarusianLanguage,
-                       int year, string educationalInstitutionName, int age, int height, int weight,GenderOfPeople genderOfPeople, 
+                       string year, string educationalInstitutionName, string age, string height, string weight,GenderOfPeople genderOfPeople, 
                        string surname, string name, string patronymic = "") : base(age, height, weight, genderOfPeople, surname, 
                        name, patronymic)
         {
@@ -35,7 +35,7 @@ namespace ConsoleApp1
                 };
             Showing += Display;
             marks = new Mark(math, physics, philosophy, politicalScience, history, belarusianLanguage);
-            this.yearOfAdmissionHigherEducation = year;
+            this.yearOfAdmissionHigherEducation = Int32.TryParse(year, out this.yearOfAdmissionHigherEducation) ? Int32.Parse(year) : 0;
             this.educationalInstitutionName = СheckEnglishLetter(educationalInstitutionName) ? educationalInstitutionName : "No information";
             this.averageMarkInAllSubjects = DoAverage();
             this.academicPerformance = DetermineAcademicPerformance(averageMarkInAllSubjects);
