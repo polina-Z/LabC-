@@ -23,9 +23,9 @@ namespace ConsoleApp1
             Weight = weight;
             this.id = SetId();
             this.genderOfPeople = genderOfPeople;
-            this.surname = surname;
-            this.name = name;
-            this.patronymic = (patronymic == "")? "No information" : patronymic;
+            this.surname = СheckEnglishLetter(surname)? surname : "No information";
+            this.name = СheckEnglishLetter(name) ? name : "No information";
+            this.patronymic = (patronymic == "") ? "No information" : (СheckEnglishLetter(patronymic) ? patronymic : "No information");
         }
 
         public int Age
@@ -93,12 +93,6 @@ namespace ConsoleApp1
 
                 if (notEnglishLetter)
                 {
-                    Console.WriteLine("------------------------------------------------------------------\n");
-                    Console.WriteLine("Error. \nExplanation: incorrectly input\n");
-                    Console.WriteLine("Press any key to continue\n");
-                    Console.WriteLine("------------------------------------------------------------------\n");
-                    Console.ReadKey();
-                    Console.Clear();
                     return false;
                 }
             }

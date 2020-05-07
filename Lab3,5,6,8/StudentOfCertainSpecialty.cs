@@ -20,12 +20,12 @@ namespace ConsoleApp1
                                          string patronymic = "") : base(math, physics, philosophy, politicalScience, history, belarusianLanguage, 
                                          year, educationalInstitutionName, age, height, weight, genderOfPeople, surname, name, patronymic)
         {
-            this.mSpeciality = speciality;
+            this.mSpeciality = СheckEnglishLetter(speciality) ? speciality : "No information";
             this.mGroupNumber = groupNumber;
             this.mProgramming = programming;
             this.mLogic = logic;
             this.mMathematicalLogic = mathematicalLogic;
-            this.mWardenOfGroup = wardenOfGroup;
+            this.mWardenOfGroup = СheckEnglishLetter(wardenOfGroup) ? wardenOfGroup : "No information" ;
             this.averageMarkInAllSubjects = CalculateAverage();
             this.academicPerformance = DetermineAcademicPerformance(averageMarkInAllSubjects);
         }

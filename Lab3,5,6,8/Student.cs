@@ -36,7 +36,7 @@ namespace ConsoleApp1
             Showing += Display;
             marks = new Mark(math, physics, philosophy, politicalScience, history, belarusianLanguage);
             this.yearOfAdmissionHigherEducation = year;
-            this.educationalInstitutionName = educationalInstitutionName;
+            this.educationalInstitutionName = СheckEnglishLetter(educationalInstitutionName) ? educationalInstitutionName : "No information";
             this.averageMarkInAllSubjects = DoAverage();
             this.academicPerformance = DetermineAcademicPerformance(averageMarkInAllSubjects);
             this.studentIdNumber = SetId();
