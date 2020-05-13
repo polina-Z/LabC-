@@ -5,3 +5,10 @@ D:\2sem\C#\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.csprojAssemblyReference.cache
 D:\2sem\C#\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.csproj.CoreCompileInputs.cache
 D:\2sem\C#\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.exe
 D:\2sem\C#\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.pdb
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\bin\Debug\lab4.1.exe.config
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\bin\Debug\lab4.1.exe
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\bin\Debug\lab4.1.pdb
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.csprojAssemblyReference.cache
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.csproj.CoreCompileInputs.cache
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.exe
+C:\Users\Strix\Desktop\Git\LabC-\Lab4\lab4.1\lab4.1\obj\Debug\lab4.1.pdb

