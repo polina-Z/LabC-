@@ -13,10 +13,10 @@ namespace ConsoleApp1
         protected Level academicPerformance;
         public delegate float DisciplineDelegate(int[] array);
         protected Dictionary<string, DisciplineDelegate> _subject;
-        public delegate void ShowInformationDelegate(string OperationName);
+        public delegate void ShowInformationDelegate(string оperationName);
         protected float[] averageMark = new float[6];
         protected float averageMarkInAllSubjects;
-        public event ShowInformationDelegate Showing =  (OperationName) => { };
+        public event ShowInformationDelegate Showing =  (оperationName) => { };
 
         public Student(int[] math, int[] physics, int[] philosophy, int[] politicalScience, int[] history, int[] belarusianLanguage,
                        string year, string educationalInstitutionName, string age, string height, string weight,GenderOfPeople genderOfPeople, 
