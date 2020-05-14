@@ -16,7 +16,7 @@ namespace ConsoleApp1
         public delegate void ShowInformationDelegate(string оperationName);
         protected float[] averageMark = new float[6];
         protected float averageMarkInAllSubjects;
-        public event ShowInformationDelegate Showing =  (оperationName) => { };
+        public event ShowInformationDelegate Showing = (оperationName) => { };
 
         public Student(int[] math, int[] physics, int[] philosophy, int[] politicalScience, int[] history, int[] belarusianLanguage,
                        string year, string educationalInstitutionName, string age, string height, string weight,GenderOfPeople genderOfPeople, 
