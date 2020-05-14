@@ -12,7 +12,7 @@ namespace ConsoleApp1
         protected int studentIdNumber;
         protected Level academicPerformance;
         public delegate float DisciplineDelegate(int[] array);
-        protected Dictionary<string, DisciplineDelegate> _subject;
+        protected Dictionary<string, DisciplineDelegate> subjects;
         public delegate void ShowInformationDelegate(string оperationName);
         protected float[] averageMark = new float[6];
         protected float averageMarkInAllSubjects;
@@ -23,7 +23,7 @@ namespace ConsoleApp1
                        string surname, string name, string patronymic = "") : base(age, height, weight, genderOfPeople, surname, 
                        name, patronymic)
         {
-            _subject =
+            subjects =
                 new Dictionary<string, DisciplineDelegate>
                 {
                    { "Math", this.DoAverage },
@@ -91,7 +91,7 @@ namespace ConsoleApp1
         {
             try
             {
-                 return _subject[operationName](array);
+                 return subjects[operationName](array);
             }
             catch (Exception ex)
             {
